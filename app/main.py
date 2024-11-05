@@ -18,10 +18,6 @@ class Animal:
             f"Hidden: {self.hidden}}}"
         )
 
-    @classmethod
-    def __str__(cls) -> str:
-        return str(cls.alive)
-
 
 class Herbivore(Animal):
     def hide(self) -> None:
@@ -31,9 +27,7 @@ class Herbivore(Animal):
 class Carnivore(Animal):
     @staticmethod
     def bite(animal: Animal) -> None:
-        if animal.hidden is True or isinstance(animal, Carnivore):
-            pass
-        else:
+        if not animal.hidden and isinstance(animal, Herbivore):
             animal.health -= 50
             if animal.health <= 0:
                 animal.die()
